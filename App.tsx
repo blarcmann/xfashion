@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { ThemeProvider } from '@shopify/restyle';
-
+import { Routes } from './src/Navigation';
 
 import {LoadAssets, theme } from './src/components';
-import { Onboarding, Welcome } from './src/views/Authentication';
+import { Onboarding, Welcome, assets as authenticationAssets } from './src/views/Authentication';
 
 const fonts = {
   "SFProText-Bold": require("./assets/fonts/SF-Pro-Text-Bold.otf"),
@@ -12,7 +12,9 @@ const fonts = {
   "SFProText-Regular": require("./assets/fonts/SF-Pro-Text-Regular.otf"),
 };
 
-const Stack = createStackNavigator();
+const assets = [...authenticationAssets]
+
+const Stack = createStackNavigator<Routes>();
 
 const AuthenticationNavigator = () => {
   return (
@@ -27,7 +29,7 @@ const AuthenticationNavigator = () => {
 export default function App() {
   return (
     <ThemeProvider {...{theme}} >
-      <LoadAssets {...{ fonts }}>
+      <LoadAssets {...{ fonts, assets }}>
         <AuthenticationNavigator />
       </LoadAssets>
     </ThemeProvider>

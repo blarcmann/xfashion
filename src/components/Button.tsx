@@ -6,14 +6,30 @@ import { Theme } from './Theme';
 
 interface ButtonProps {
   label: string;
-  variant: 'default' | 'primary';
+  variant: 'default' | 'primary' | 'transparent';
   onPress: () => void;
 }
 
 const Button = ({ label, variant, onPress }: ButtonProps) => {
   const theme = useTheme<Theme>();
-  const backgroundColor = variant === 'primary' ? theme.colors.greenBg : theme.colors.lightGrayBg;
-  const color = variant === 'primary' ? theme.colors.white : theme.colors.title;
+  let backgroundColor = theme.colors.lightGrayBg;
+  let color = theme.colors.title;
+
+  switch (variant) {
+    case 'primary':
+      backgroundColor = theme.colors.greenBg
+      color = theme.colors.white
+      break;
+    case 'transparent':
+      backgroundColor = 'transparent'
+      color = theme.colors.title
+      break;
+
+    default:
+      backgroundColor = theme.colors.lightGrayBg
+      color = theme.colors.title
+      break;
+  }
 
   return (
     <RectButton

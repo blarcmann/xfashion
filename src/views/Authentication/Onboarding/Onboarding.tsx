@@ -7,9 +7,10 @@ import Animated, { divide, multiply } from 'react-native-reanimated';
 import Slide, { SLIDE_HEIGHT } from './Slide';
 import Footer from './Footer';
 import Dot from './Dot';
+import { theme } from '../../../components';
+import { Routes, StackNavigationProps } from '../../../Navigation';
 
 
-const BORDER_RADIUS = 75;
 const { width } = Dimensions.get('window');
 
 
@@ -20,7 +21,7 @@ const slides = [
     position: 'left',
     subtitle: 'Your Styles, Your Way',
     tagline: 'Create your individual and unique styles and look amazing everyday',
-    picture: require('./assets/1.jpg'),
+    picture: require('../assets/1.jpg'),
   },
   {
     label: 'Playful',
@@ -28,7 +29,7 @@ const slides = [
     position: 'right',
     subtitle: 'Find your Outfits',
     tagline: 'Confused about your outfit, Don\'t worry! Find the best outfit here!',
-    picture: require('./assets/2.jpg'),
+    picture: require('../assets/2.jpg'),
   },
   {
     label: 'Excentric',
@@ -36,7 +37,7 @@ const slides = [
     position: 'left',
     subtitle: 'Hear it First, Wear it First',
     tagline: 'Hating the clothes in your wardrobe? Explore hundreds of outfit ideas',
-    picture: require('./assets/3.jpg'),
+    picture: require('../assets/3.jpg'),
   },
   {
     label: 'Funky',
@@ -44,11 +45,13 @@ const slides = [
     position: 'right',
     subtitle: 'Look Good, Feel Good',
     tagline: 'Discover the latest trends in fashion and explore your personality',
-    picture: require('./assets/4.jpg'),
+    picture: require('../assets/4.jpg'),
   },
 ]
 
-export default function Onboarding() {
+export const assets = slides.map(slide => slide.picture);
+
+export default function Onboarding({ navigation }: StackNavigationProps<Routes, 'Onboarding'>) {
   const scroll = useRef<Animated.ScrollView>(null);
   // const x = useValue(0);
   const { scrollHandler, x } = useScrollHandler();
@@ -69,7 +72,7 @@ export default function Onboarding() {
           {...scrollHandler}
         >
           {slides.map(({ position, label, picture }, index) => (
-            <Slide key={index} {...{label, position, picture}} />
+            <Slide key={index} {...{ label, position, picture }} />
           ))}
         </Animated.ScrollView>
       </Animated.View>
@@ -90,20 +93,25 @@ export default function Onboarding() {
             width: width * slides.length,
             transform: [{ translateX: multiply(x, -1) }]
           }}>
-            {slides.map(({ subtitle, tagline }, index) => (
-              <Footer
-                key={index}
-                last={index === slides.length - 1}
-                {...{ subtitle, tagline }}
-                onPress={() => {
-                  if (scroll.current) {
-                    scroll.current
-                      .getNode()
-                      .scrollTo({ x: width * (index + 1), animated: true })
-                  }
-                }}
-              />
-            ))}
+            {slides.map(({ subtitle, tagline }, index) => {
+              const last = index === slides.length - 1;
+              return (
+                <Footer
+                  key={index}
+                  {...{ subtitle, tagline, last }}
+                  onPress={() => {
+                    if (last) {
+                      navigation.navigate('Welcome');
+                    }
+                    else {
+                      scroll.current
+                        ?.getNode()
+                        .scrollTo({ x: width * (index + 1), animated: true })
+                    }
+                  }}
+                />
+              )
+            })}
           </Animated.View>
         </View>
       </View>
@@ -119,7 +127,7 @@ const Styles = StyleSheet.create({
   },
   slider: {
     height: SLIDE_HEIGHT,
-    borderBottomRightRadius: BORDER_RADIUS,
+    borderBottomRightRadius: theme.borderRadii.xl,
   },
   footer: {
     flex: 1,
@@ -133,11 +141,11 @@ const Styles = StyleSheet.create({
     // width: width * slides.length,
     // flexDirection: 'row',
     backgroundColor: 'white',
-    borderTopLeftRadius: BORDER_RADIUS,
+    borderTopLeftRadius: theme.borderRadii.xl,
   },
   pagination: {
     ...StyleSheet.absoluteFillObject,
-    height: BORDER_RADIUS,
+    height: theme.borderRadii.xl,
     flexDirection: 'row',
     // width: width,
     alignItems: 'center',
