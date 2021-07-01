@@ -20,7 +20,7 @@ const slides = [
     position: 'left',
     subtitle: 'Your Styles, Your Way',
     tagline: 'Create your individual and unique styles and look amazing everyday',
-    picture: require('../../../../../assets/images/slider/1.jpg'),
+    picture: require('./assets/1.jpg'),
   },
   {
     label: 'Playful',
@@ -28,7 +28,7 @@ const slides = [
     position: 'right',
     subtitle: 'Find your Outfits',
     tagline: 'Confused about your outfit, Don\'t worry! Find the best outfit here!',
-    picture: require('../../../../../assets/images/slider/2.jpg'),
+    picture: require('./assets/2.jpg'),
   },
   {
     label: 'Excentric',
@@ -36,7 +36,7 @@ const slides = [
     position: 'left',
     subtitle: 'Hear it First, Wear it First',
     tagline: 'Hating the clothes in your wardrobe? Explore hundreds of outfit ideas',
-    picture: require('../../../../../assets/images/slider/3.jpg'),
+    picture: require('./assets/3.jpg'),
   },
   {
     label: 'Funky',
@@ -44,7 +44,7 @@ const slides = [
     position: 'right',
     subtitle: 'Look Good, Feel Good',
     tagline: 'Discover the latest trends in fashion and explore your personality',
-    picture: require('../../../../../assets/images/slider/4.jpg'),
+    picture: require('./assets/4.jpg'),
   },
 ]
 
