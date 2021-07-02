@@ -1,26 +1,21 @@
 import React from 'react'
 import { Button } from '../../../components'
 import { Box, Text } from '../../../components/Theme'
+import { Routes, StackNavigationProps } from '../../../Navigation'
 
-interface WelcomeProps {
-  rice: String;
-}
-
-const Welcome = ({ rice }: WelcomeProps) => {
+const Welcome = ({ navigation }: StackNavigationProps<Routes, 'Onboarding'>) => {
   return (
     <Box flex={1} backgroundColor="white">
       <Box
         flex={1}
         borderBottomRightRadius="xl"
-        backgroundColor="lightGrayBg"
+        backgroundColor="lightgray"
         alignItems="center"
         justifyContent="flex-end"
-      >
-
-      </Box>
+      />
       <Box flex={1} borderTopLeftRadius="xl">
         <Box
-          backgroundColor="lightGrayBg"
+          backgroundColor="lightgray"
           position="absolute"
           top={0}
           left={0}
@@ -42,7 +37,7 @@ const Welcome = ({ rice }: WelcomeProps) => {
           <Button
             variant="primary"
             label="Have an account? Login"
-            onPress={() => console.log('pressps')}
+            onPress={() => navigation.navigate('Login')}
           />
           <Button
             variant="default"

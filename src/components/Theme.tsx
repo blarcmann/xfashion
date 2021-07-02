@@ -1,7 +1,7 @@
 import { createBox, createText, createTheme } from '@shopify/restyle'
 
 const palette = {
-  title: '#0C0D34',
+  darkblue: '#0C0D34',
   white: 'white',
   body: 'rgba(12, 13, 52, 0.7)',
   green: '#2CB9B0',
@@ -11,11 +11,11 @@ const palette = {
 
 const theme = createTheme({
   colors: {
-    title: palette.title,
+    secondary: palette.darkblue,
     white: palette.white,
     body: palette.body,
-    greenBg: palette.green,
-    lightGrayBg: palette.graylite,
+    green: palette.green,
+    lightgray: palette.graylite,
   },
   spacing: {
     s: 8,
@@ -24,6 +24,7 @@ const theme = createTheme({
     xl: 40,
   },
   borderRadii: {
+    none: 0,
     s: 4,
     m: 10,
     l: 25,
@@ -40,13 +41,13 @@ const theme = createTheme({
     title: {
       fontSize: 24,
       fontFamily: 'SFProText-Semibold',
-      color: 'title',
+      color: 'secondary',
     },
     title2: {
       fontSize: 24,
       lineHeight: 30,
       fontFamily: 'SFProText-Semibold',
-      color: 'title',
+      color: 'secondary',
     },
     body: {
       fontSize: 16,
