@@ -3,7 +3,7 @@ import { ReactNode } from 'react'
 import { StyleSheet, Image, Dimensions, StatusBar } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import theme, { Box } from './Theme'
+import theme, { Box } from '../components/Theme' 
 
 export const assets = [require('./assets/images/patterns/taieri.png')];
 const aspectRatio = 920 / 1600;

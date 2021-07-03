@@ -1,38 +1,21 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { StyleSheet, TextInput, TextInputProps as RNTextInputProps } from 'react-native'
 import theme, { Box } from '../Theme'
 import { Feather as Icon } from '@expo/vector-icons';
 
 interface TextFieldProps extends RNTextInputProps {
   icon: any;
-  validator: (input: string) => boolean;
+  touched?: boolean;
+  error: string;
 }
-const ICON_SIZE = theme.borderRadii.m * 2;
 
-const Valid = true;
-const Invalid = false;
-const Pristine = null;
 
-type InputState = typeof Valid | typeof Invalid | typeof Pristine;
-
-const TextField = ({ icon, validator, ...props }: TextFieldProps) => {
-  const [input, setInput] = useState('');
-  const [status, setStatus] = useState<InputState>(Pristine);
-  const recolor = status === Pristine ? 'darkgray' : (status === Valid ? 'green' : 'danger');
-  const color = status === Pristine
-    ? theme.colors.darkgray
-    : (status === Valid ? theme.colors.green : theme.colors.danger);
-
-  const onChangeText = (text: string) => {
-    setInput(text);
-    if (status !== Pristine) {
-      validate();
-    }
-  };
-  const validate = () => {
-    const valid = validator(input);
-    setStatus(valid);
-  }
+const TextField = ({ icon, touched, error, ...props }: TextFieldProps) => {
+  const ICON_SIZE = theme.borderRadii.m * 2;
+  const recolor = !touched
+    ? 'darkgray'
+    : (error ? 'danger' : 'green');
+  const color = theme.colors[recolor];
 
   return (
     <Box
@@ -49,19 +32,20 @@ const TextField = ({ icon, validator, ...props }: TextFieldProps) => {
         <TextInput
           underlineColorAndroid="transparent"
           placeholderTextColor={color}
-          {...{ onChangeText }}
-          onBlur={() => validate()}
           {...props}
         />
       </Box>
-      {(status === Valid || status === Invalid) && (
+      {(touched) && (
         <Box
           alignItems="center"
+          justifyContent='center'
           marginRight="s"
           height={ICON_SIZE}
           width={ICON_SIZE}
+          borderRadius="m"
+          backgroundColor={error ? 'danger' : 'green'}
         >
-          <Icon name={status === Valid ? 'check' : 'x-circle'} size={16} {...{ color }} />
+          <Icon name={error ? 'x' : 'check'} size={14} color="white" />
         </Box>
       )}
     </Box>

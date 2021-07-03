@@ -1,19 +1,20 @@
 import React from 'react'
-
+import * as Yup from 'yup';
 import { Button, Container, Text, TextField, Checkbox } from '../../../components';
+import { Formik } from 'formik';
 import SocialLogin from '../../../components/SocialLogin';
 import { Box } from '../../../components/Theme';
 
-// interface LoginProps {}
 
-const emailValidator = (email: string) => {
-  const regexEmail = /\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/;
-  return regexEmail.test(email);
-}
-
-const passsordValidator = (password: string) => {
-  return password.length >= 8;
-}
+const LoginSchema = Yup.object().shape({
+  password: Yup.string()
+    .min(7, 'Too Short!')
+    .max(25, 'Too Long!')
+    .required('Required'),
+  email: Yup.string()
+    .email('Invalid email')
+    .required('Required'),
+});
 
 const Login = () => {
   const footer = (
@@ -52,24 +53,60 @@ const Login = () => {
         >
           Use your credentials below and login to your account
         </Text>
-        <Box marginBottom="m">
-          <TextField icon="mail" placeholder="Enter your email" validator={emailValidator} />
-        </Box>
-        <Box marginBottom="m">
-          <TextField icon="lock" placeholder="Enter your password" validator={passsordValidator} />
-        </Box>
-        <Box flexDirection="row" justifyContent="space-between" alignItems="center">
-          <Checkbox label="Remember me" />
-          <Button variant="transparent" onPress={() => alert('olodo!')}>
-            <Text color="green">Forgot password</Text>
-          </Button>
-        </Box>
-        <Box alignItems="center" marginTop="m">
-          <Button
-            variant="primary"
-            label="Log into your account"
-            onPress={() => alert('olodo!')} />
-        </Box>
+        <Formik
+          initialValues={{
+            email: '',
+            password: '',
+            remember: false,
+          }}
+          validationSchema={LoginSchema}
+          onSubmit={values => console.log(values)}
+        >
+          {({ handleChange, handleBlur, handleSubmit, setFieldValue, errors, touched, values }) => (
+            <Box>
+              <Box marginBottom="m">
+                <TextField
+                  icon="mail"
+                  placeholder="Enter your email"
+                  onChangeText={handleChange('email')}
+                  onBlur={handleBlur('email')}
+                  error={errors.email ? errors.email : ''}
+                  touched={touched.email}
+                />
+              </Box>
+              <Box marginBottom="m">
+                <TextField
+                  icon="lock"
+                  placeholder="Enter your password"
+                  onChangeText={handleChange('password')}
+                  onBlur={handleBlur('password')}
+                  error={errors.password ? errors.password : ''}
+                  touched={touched.password}
+                />
+              </Box>
+              <Box
+                flexDirection="row"
+                justifyContent="space-between"
+                alignItems="center"
+              >
+                <Checkbox
+                  label="Remember me"
+                  value={values.remember}
+                  onChange={(val: boolean) => setFieldValue('remember', val)}
+                />
+                <Button variant="transparent" onPress={() => alert('olodo!')}>
+                  <Text color="green">Forgot password</Text>
+                </Button>
+              </Box>
+              <Box alignItems="center" marginTop="m">
+                <Button
+                  variant="primary"
+                  label="Log into your account"
+                  onPress={handleSubmit} />
+              </Box>
+            </Box>
+          )}
+        </Formik>
       </Box>
     </Container>
   )
