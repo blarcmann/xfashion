@@ -4,8 +4,11 @@ const palette = {
   darkblue: '#0C0D34',
   white: 'white',
   body: 'rgba(12, 13, 52, 0.7)',
+  bodylite: 'rgba(12, 13, 52, 0.5)',
   green: '#2CB9B0',
   graylite: 'rgba(12, 13, 52, 0.05)',
+  red: '#FF0058',
+  darkgray: '#8A8d90',
 };
 
 
@@ -16,6 +19,9 @@ const theme = createTheme({
     body: palette.body,
     green: palette.green,
     lightgray: palette.graylite,
+    lightbody: palette.bodylite,
+    darkgray: palette.darkgray,
+    danger: palette.red,
   },
   spacing: {
     s: 8,
