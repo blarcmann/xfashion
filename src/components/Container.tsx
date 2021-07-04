@@ -2,8 +2,9 @@ import React from 'react'
 import { ReactNode } from 'react'
 import { StyleSheet, Image, Dimensions, StatusBar } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
-import theme, { Box } from '../components/Theme' 
+import theme, { Box } from '../components/Theme'
 
 export const assets = [require('./assets/images/patterns/taieri.png')];
 const aspectRatio = 920 / 1600;
@@ -35,7 +36,9 @@ const Container = ({ children, footer }: ContainerProps) => {
           style={[{ width, height, ...StyleSheet.absoluteFillObject, top: -height * 0.61 }]}
         />
         <Box flex={1} backgroundColor="white" borderRadius="xl" borderTopLeftRadius="none">
-          {children}
+          <KeyboardAwareScrollView>
+            {children}
+          </KeyboardAwareScrollView>
         </Box>
       </Box>
       <Box style={Styles.footer}>

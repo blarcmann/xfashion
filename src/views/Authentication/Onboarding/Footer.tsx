@@ -17,7 +17,7 @@ const Footer = ({ subtitle, tagline, last, onPress }: FooterProps) => {
       <Button
         label={last ? 'Let\'s get started' : 'Next'}
         variant={last ? 'primary' : 'default'}
-        {...{onPress}}
+        {...{ onPress }}
       />
     </View>
   )

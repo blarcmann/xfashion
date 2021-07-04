@@ -1,7 +1,7 @@
 import React from 'react'
-import { Button } from '../../../components'
-import { Box, Text } from '../../../components/Theme'
-import { Routes, StackNavigationProps } from '../../../Navigation'
+import { Button } from '../../components'
+import { Box, Text } from '../../components/Theme'
+import { Routes, StackNavigationProps } from '../../Navigation'
 
 const Welcome = ({ navigation }: StackNavigationProps<Routes, 'Onboarding'>) => {
   return (
@@ -56,9 +56,3 @@ const Welcome = ({ navigation }: StackNavigationProps<Routes, 'Onboarding'>) => 
 }
 
 export default Welcome
-
-// const Styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//   }
-// })
