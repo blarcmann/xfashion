@@ -19,7 +19,7 @@ const ForgotPassword = ({ navigation }: StackNavigationProps<Routes, 'ForgotPass
       email: '',
     },
     validationSchema: ForgotPasswordSchema,
-    onSubmit: values => console.log(values),
+    onSubmit: () => navigation.navigate('PasswordChanged'),
   })
 
   const footer = (
@@ -37,7 +37,7 @@ const ForgotPassword = ({ navigation }: StackNavigationProps<Routes, 'ForgotPass
           variant="title"
           textAlign="center"
           marginBottom="m">
-            Forgot Password
+            Forgot Password?
         </Text>
         <Text
           variant="body"

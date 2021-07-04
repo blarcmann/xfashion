@@ -7,7 +7,7 @@ import Welcome from './Welcome';
 import Login from './Login';
 import Signup from './Signup';
 import ForgotPassword from './ForgotPassword';
-
+import PasswordChanged from './PasswordChanged';
 
 
 const AuthStack = createStackNavigator<Routes>();
@@ -19,6 +19,7 @@ export const AuthenticationNavigator = () => {
       <AuthStack.Screen name="Login" component={Login} />
       <AuthStack.Screen name="Signup" component={Signup} />
       <AuthStack.Screen name="ForgotPassword" component={ForgotPassword} />
+      <AuthStack.Screen name="PasswordChanged" component={PasswordChanged} />
     </AuthStack.Navigator>
   );
 }
