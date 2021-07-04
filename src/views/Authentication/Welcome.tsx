@@ -42,7 +42,7 @@ const Welcome = ({ navigation }: StackNavigationProps<Routes, 'Onboarding'>) => 
           <Button
             variant="default"
             label="Join us, its free"
-            onPress={() => console.log('pressps')}
+            onPress={() => navigation.navigate('Signup')}
           />
           <Button
             variant="transparent"

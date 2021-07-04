@@ -1,28 +1,22 @@
-import React, { useRef } from 'react'
-import { TouchableWithoutFeedback, TextInput } from 'react-native';
+import React  from 'react'
 import * as Yup from 'yup';
-import { Button, Container, Text, TextField, Checkbox } from '../../components';
+import { Button, Container, Text, TextField } from '../../components';
 import { useFormik } from 'formik';
 import Footer from './Footer';
 import { Box } from '../../components/Theme';
+import { StackNavigationProps, Routes } from '../../Navigation';
 
 
 const ForgotPasswordSchema = Yup.object().shape({
-  password: Yup.string()
-    .min(7, 'Too Short!')
-    .max(25, 'Too Long!')
-    .required('Required'),
   email: Yup.string()
     .email('Invalid email')
     .required('Required'),
 });
 
-const ForgotPassword = () => {
-  const { handleChange, handleBlur, handleSubmit, setFieldValue, errors, touched, values } = useFormik({
+const ForgotPassword = ({ navigation }: StackNavigationProps<Routes, 'ForgotPassword'>) => {
+  const { handleChange, handleBlur, handleSubmit, errors, touched } = useFormik({
     initialValues: {
       email: '',
-      password: '',
-      remember: false,
     },
     validationSchema: ForgotPasswordSchema,
     onSubmit: values => console.log(values),
@@ -32,26 +26,25 @@ const ForgotPassword = () => {
     <Footer
       title="Don't have an account?"
       action="Sign up here"
-      onPress={() => alert('Press')}
+      onPress={() => navigation.navigate('Signup')}
     />
   );
 
-  const password = useRef<TextInput>(null);
   return (
     <Container {...{ footer }}>
-      <Box margin="l">
+      <Box padding="l" justifyContent="center" flex={1}>
         <Text
           variant="title"
           textAlign="center"
           marginBottom="m">
-          Welcome back
+            Forgot Password
         </Text>
         <Text
           variant="body"
           textAlign="center"
           marginBottom="l"
         >
-          Use your credentials below and login to your account
+          Enter the email associated with your account
         </Text>
         <Box>
           <Box marginBottom="m">
@@ -64,44 +57,15 @@ const ForgotPassword = () => {
               touched={touched.email}
               autoCompleteType="email"
               autoCapitalize="none"
-              returnKeyLabel="next"
-              returnKeyType="next"
-              onSubmitEditing={() => password.current?.focus()}
-            />
-          </Box>
-          <Box marginBottom="m">
-            <TextField
-              ref={password}
-              icon="lock"
-              placeholder="Enter your password"
-              onChangeText={handleChange('password')}
-              onBlur={handleBlur('password')}
-              error={errors.password ? errors.password : ''}
-              touched={touched.password}
               returnKeyLabel="done"
               returnKeyType="done"
               onSubmitEditing={() => handleSubmit()}
-              autoCompleteType="password"
-              secureTextEntry
             />
-          </Box>
-          <Box
-            flexDirection="row"
-            justifyContent="space-between"
-            alignItems="center">
-            <Checkbox
-              label="Remember me"
-              value={values.remember}
-              onChange={(val: boolean) => setFieldValue('remember', val)}
-            />
-            <TouchableWithoutFeedback onPress={() => alert('olodo!')}>
-              <Text color="green">Forgot password</Text>
-            </TouchableWithoutFeedback>
           </Box>
           <Box alignItems="center" marginTop="m">
             <Button
               variant="primary"
-              label="Log into your account"
+              label="Reset password"
               onPress={handleSubmit} />
           </Box>
         </Box>
@@ -111,9 +75,3 @@ const ForgotPassword = () => {
 }
 
 export default ForgotPassword
-
-// const Styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//   }
-// })

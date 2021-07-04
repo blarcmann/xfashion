@@ -38,9 +38,10 @@ const Login = ({ navigation }: StackNavigationProps<Routes, 'Login'>) => {
   );
 
   const password = useRef<TextInput>(null);
+
   return (
     <Container {...{ footer }}>
-      <Box margin="l">
+      <Box padding="l">
         <Text
           variant="title"
           textAlign="center"
@@ -95,7 +96,7 @@ const Login = ({ navigation }: StackNavigationProps<Routes, 'Login'>) => {
               value={values.remember}
               onChange={(val: boolean) => setFieldValue('remember', val)}
             />
-            <TouchableWithoutFeedback onPress={() => alert('olodo!')}>
+            <TouchableWithoutFeedback onPress={() => navigation.navigate('ForgotPassword')}>
               <Text color="green">Forgot password</Text>
             </TouchableWithoutFeedback>
           </Box>
@@ -112,9 +113,3 @@ const Login = ({ navigation }: StackNavigationProps<Routes, 'Login'>) => {
 }
 
 export default Login
-
-// const Styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//   }
-// })

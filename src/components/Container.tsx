@@ -1,14 +1,14 @@
 import React from 'react'
 import { ReactNode } from 'react'
-import { StyleSheet, Image, Dimensions, StatusBar } from 'react-native'
+import { StyleSheet, Image, Dimensions, Platform } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
-
+import Constants from "expo-constants";
 import theme, { Box } from '../components/Theme'
 
 export const assets = [require('./assets/images/patterns/taieri.png')];
 const aspectRatio = 920 / 1600;
-const { width } = Dimensions.get('window');
+const { width, height: wHeight } = Dimensions.get('window');
 const height = width * aspectRatio;
 
 interface ContainerProps {
@@ -20,32 +20,32 @@ interface ContainerProps {
 const Container = ({ children, footer }: ContainerProps) => {
   const insets = useSafeAreaInsets();
   return (
-    <Box flex={1} backgroundColor="secondary">
-      <StatusBar barStyle="light-content" />
-      <Box backgroundColor="white">
-        <Box
-          borderBottomLeftRadius="xl"
-          overflow="hidden"
-          height={height * 0.61}
-        >
-          <Image source={assets[0]} style={Styles.pattern} />
+    <KeyboardAwareScrollView scrollEnabled={false}>
+      <Box height={wHeight + (Platform.OS === 'android' ? Constants.statusBarHeight : 0)} backgroundColor="secondary">
+        {/* <StatusBar barStyle="light-content" /> */} 
+        <Box backgroundColor="white">
+          <Box
+            borderBottomLeftRadius="xl"
+            overflow="hidden"
+            height={height * 0.61}
+          >
+            <Image source={assets[0]} style={Styles.pattern} />
+          </Box>
         </Box>
-      </Box>
-      <Box flex={1} overflow="hidden">
-        <Image source={assets[0]}
-          style={[{ width, height, ...StyleSheet.absoluteFillObject, top: -height * 0.61 }]}
-        />
-        <Box flex={1} backgroundColor="white" borderRadius="xl" borderTopLeftRadius="none">
-          <KeyboardAwareScrollView>
+        <Box flex={1} overflow="hidden">
+          <Image source={assets[0]}
+            style={[{ width, height, ...StyleSheet.absoluteFillObject, top: -height * 0.61 }]}
+          />
+          <Box flex={1} backgroundColor="white" borderRadius="xl" borderTopLeftRadius="none">
             {children}
-          </KeyboardAwareScrollView>
+          </Box>
+        </Box>
+        <Box style={Styles.footer}>
+          {footer}
+          <Box height={insets.bottom} />
         </Box>
       </Box>
-      <Box style={Styles.footer}>
-        {footer}
-        <Box height={insets.bottom} />
-      </Box>
-    </Box>
+    </KeyboardAwareScrollView>
   )
 }
 

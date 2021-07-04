@@ -1,5 +1,6 @@
 import React, { ReactElement, useCallback, useEffect, useState } from "react";
 import { AsyncStorage } from "react-native";
+import { StatusBar } from 'expo-status-bar'
 import AppLoading from 'expo-app-loading';
 import { Asset } from "expo-asset";
 import * as Font from "expo-font";
@@ -65,6 +66,7 @@ const LoadAssets = ({ assets, fonts, children }: LoadAssetsProps) => {
   }
   return (
     <NavigationContainer {...{ onStateChange, initialState }}>
+      <StatusBar style="light" />
       {children}
     </NavigationContainer>
   );

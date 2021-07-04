@@ -19,20 +19,20 @@ const SignupSchema = Yup.object().shape({
   email: Yup.string()
     .email('Invalid email')
     .required('Required'),
-  name: Yup.string()
-    .required('Required'),
 });
 
 const Signup = ({ navigation }: StackNavigationProps<Routes, 'Signup'>) => {
   const { handleChange, handleBlur, handleSubmit, errors, touched } = useFormik({
     initialValues: {
-      name: '',
       email: '',
       password: '',
       confirmPassword: '',
     },
     validationSchema: SignupSchema,
-    onSubmit: values => console.log(values),
+    onSubmit: values => {
+      console.log(values)
+      alert('ydhhd');
+    }
   })
 
   const footer = (
@@ -43,11 +43,11 @@ const Signup = ({ navigation }: StackNavigationProps<Routes, 'Signup'>) => {
     />
   );
 
-  const password = useRef<TextInput>(null); 
+  const password = useRef<TextInput>(null);
   const confirmPassword = useRef<TextInput>(null);
   return (
     <Container {...{ footer }}>
-      <Box margin="l">
+      <Box padding="l">
         <Text
           variant="title"
           textAlign="center"
@@ -111,7 +111,7 @@ const Signup = ({ navigation }: StackNavigationProps<Routes, 'Signup'>) => {
             <Button
               variant="primary"
               label="Create your account"
-              onPress={handleSubmit} />
+              onPress={() => handleSubmit()} />
           </Box>
         </Box>
       </Box>
