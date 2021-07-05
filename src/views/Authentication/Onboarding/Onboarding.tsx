@@ -8,7 +8,7 @@ import Slide, { SLIDE_HEIGHT } from './Slide';
 import Footer from './Footer';
 import Dot from './Dot';
 import { theme } from '../../../components';
-import { AuthenticationRoutes, StackNavigationProps } from '../../../Navigation';
+import { AuthNavigationProps } from '../../../Navigation';
 
 
 const { width } = Dimensions.get('window');
@@ -51,7 +51,7 @@ const slides = [
 
 export const assets = slides.map(slide => slide.picture);
 
-export default function Onboarding({ navigation }: StackNavigationProps<AuthenticationRoutes, 'Onboarding'>) {
+export default function Onboarding({ navigation }: AuthNavigationProps<'Onboarding'>) {
   const scroll = useRef<Animated.ScrollView>(null);
   // const x = useValue(0);
   const { scrollHandler, x } = useScrollHandler();

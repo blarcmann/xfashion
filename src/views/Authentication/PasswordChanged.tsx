@@ -1,10 +1,10 @@
 import React from 'react'
 import { Button, Container, Text, RoundedIconButton } from '../../components';
 import { Box } from '../../components/Theme';
-import { StackNavigationProps, AuthenticationRoutes } from '../../Navigation';
+import { AuthNavigationProps } from '../../Navigation';
 
 
-const PasswordChanged = ({ navigation }: StackNavigationProps<AuthenticationRoutes, 'PasswordChanged'>) => {
+const PasswordChanged = ({ navigation }: AuthNavigationProps<'PasswordChanged'>) => {
   const SIZE = 80;
   return (
     <Container pattern={0} footer={
@@ -17,7 +17,7 @@ const PasswordChanged = ({ navigation }: StackNavigationProps<AuthenticationRout
           onPress={() => navigation.pop()} />
       </Box>
     }>
-      <Box padding="l" alignItems="center" justifyContent="center" flex={1}>
+      <Box alignItems="center">
         <RoundedIconButton
           name="check"
           color="green"

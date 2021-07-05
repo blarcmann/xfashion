@@ -10,6 +10,10 @@ const palette = {
   graylite: 'rgba(12, 13, 52, 0.05)',
   red: '#FF0058',
   darkgray: '#8A8d90',
+  orange: '#FE5E33',
+  yellow: '#FFC641',
+  pink: '#FF87A2',
+  violet: '#442CB9',
 };
 
 
@@ -24,6 +28,10 @@ const theme = createTheme({
     lightgreen: palette.greenlite,
     darkgray: palette.darkgray,
     danger: palette.red,
+    orange: palette.orange,
+    yellow: palette.yellow,
+    pink: palette.pink,
+    violet: palette.violet,
   },
   spacing: {
     s: 8,

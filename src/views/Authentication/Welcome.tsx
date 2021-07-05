@@ -2,9 +2,9 @@ import React from 'react'
 import { BorderlessButton } from 'react-native-gesture-handler'
 import { Button } from '../../components'
 import { Box, Text } from '../../components/Theme'
-import { AuthenticationRoutes, StackNavigationProps } from '../../Navigation'
+import { AuthNavigationProps } from '../../Navigation'
 
-const Welcome = ({ navigation }: StackNavigationProps<AuthenticationRoutes, 'Onboarding'>) => {
+const Welcome = ({ navigation }: AuthNavigationProps<'Onboarding'>) => {
   return (
     <Box flex={1} backgroundColor="white">
       <Box

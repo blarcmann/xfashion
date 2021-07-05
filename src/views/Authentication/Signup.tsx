@@ -5,7 +5,7 @@ import { Button, Container, Text, TextField } from '../../components';
 import { useFormik } from 'formik';
 import Footer from './Footer';
 import { Box } from '../../components/Theme';
-import { StackNavigationProps, AuthenticationRoutes } from '../../Navigation';
+import { AuthNavigationProps } from '../../Navigation';
 
 
 const SignupSchema = Yup.object().shape({
@@ -21,7 +21,7 @@ const SignupSchema = Yup.object().shape({
     .required('Required'),
 });
 
-const Signup = ({ navigation }: StackNavigationProps<AuthenticationRoutes, 'Signup'>) => {
+const Signup = ({ navigation }: AuthNavigationProps<'Signup'>) => {
   const { handleChange, handleBlur, handleSubmit, errors, touched } = useFormik({
     initialValues: {
       email: '',
@@ -47,72 +47,70 @@ const Signup = ({ navigation }: StackNavigationProps<AuthenticationRoutes, 'Sign
   const confirmPassword = useRef<TextInput>(null);
   return (
     <Container pattern={1} {...{ footer }}>
-      <Box padding="l">
-        <Text
-          variant="title"
-          textAlign="center"
-          marginBottom="m">
-          Create account
-        </Text>
-        <Text
-          variant="body"
-          textAlign="center"
-          marginBottom="l"
-        >
-          We'd like to know your name, email, and your password
-        </Text>
-        <Box>
-          <Box marginBottom="m">
-            <TextField
-              icon="mail"
-              placeholder="Enter your email"
-              onChangeText={handleChange('email')}
-              onBlur={handleBlur('email')}
-              error={errors.email ? errors.email : ''}
-              touched={touched.email}
-              autoCompleteType="email"
-              autoCapitalize="none"
-              returnKeyLabel="next"
-              returnKeyType="next"
-              onSubmitEditing={() => password.current?.focus()}
-            />
-          </Box>
-          <Box marginBottom="m">
-            <TextField
-              ref={password}
-              icon="lock"
-              placeholder="Enter your password"
-              onChangeText={handleChange('password')}
-              onBlur={handleBlur('password')}
-              error={errors.password ? errors.password : ''}
-              touched={touched.password}
-              returnKeyLabel="confirm"
-              returnKeyType="next"
-              onSubmitEditing={() => confirmPassword.current?.focus()}
-              autoCompleteType="password"
-              secureTextEntry
-            />
-          </Box>
-          <Box marginBottom="m">
-            <TextField
-              icon="lock"
-              placeholder="Confirm your password"
-              onChangeText={handleChange('confirmPassword')}
-              onBlur={handleBlur('confirmPassword')}
-              error={errors.confirmPassword ? errors.confirmPassword : ''}
-              touched={touched.confirmPassword}
-              returnKeyLabel="done"
-              returnKeyType="done"
-              onSubmitEditing={() => handleSubmit()}
-              secureTextEntry
-            />
-          </Box>
-          <Box alignItems="center" marginTop="m">
-            <Button
-              variant="primary"
-              label="Create your account"
-              onPress={() => handleSubmit()} />
-          </Box>
+      <Text
+        variant="title"
+        textAlign="center"
+        marginBottom="m">
+        Create account
+      </Text>
+      <Text
+        variant="body"
+        textAlign="center"
+        marginBottom="l"
+      >
+        We'd like to know your name, email, and your password
+      </Text>
+      <Box>
+        <Box marginBottom="m">
+          <TextField
+            icon="mail"
+            placeholder="Enter your email"
+            onChangeText={handleChange('email')}
+            onBlur={handleBlur('email')}
+            error={errors.email ? errors.email : ''}
+            touched={touched.email}
+            autoCompleteType="email"
+            autoCapitalize="none"
+            returnKeyLabel="next"
+            returnKeyType="next"
+            onSubmitEditing={() => password.current?.focus()}
+          />
+        </Box>
+        <Box marginBottom="m">
+          <TextField
+            ref={password}
+            icon="lock"
+            placeholder="Enter your password"
+            onChangeText={handleChange('password')}
+            onBlur={handleBlur('password')}
+            error={errors.password ? errors.password : ''}
+            touched={touched.password}
+            returnKeyLabel="confirm"
+            returnKeyType="next"
+            onSubmitEditing={() => confirmPassword.current?.focus()}
+            autoCompleteType="password"
+            secureTextEntry
+          />
+        </Box>
+        <Box marginBottom="m">
+          <TextField
+            icon="lock"
+            placeholder="Confirm your password"
+            onChangeText={handleChange('confirmPassword')}
+            onBlur={handleBlur('confirmPassword')}
+            error={errors.confirmPassword ? errors.confirmPassword : ''}
+            touched={touched.confirmPassword}
+            returnKeyLabel="done"
+            returnKeyType="done"
+            onSubmitEditing={() => handleSubmit()}
+            secureTextEntry
+          />
+        </Box>
+        <Box alignItems="center" marginTop="m">
+          <Button
+            variant="primary"
+            label="Create your account"
+            onPress={() => handleSubmit()} />
         </Box>
       </Box>
     </Container>

@@ -28,7 +28,7 @@ const Container = ({ children, footer, pattern }: ContainerProps) => {
   return (
     <KeyboardAwareScrollView scrollEnabled={false}>
       <Box height={wHeight + (Platform.OS === 'android' ? Constants.statusBarHeight : 0)} backgroundColor="secondary">
-        {/* <StatusBar barStyle="light-content" /> */} 
+        {/* <StatusBar barStyle="light-content" /> */}
         <Box backgroundColor="white">
           <Box
             borderBottomLeftRadius="xl"
@@ -42,7 +42,14 @@ const Container = ({ children, footer, pattern }: ContainerProps) => {
           <Image source={asset}
             style={[{ width, height, ...StyleSheet.absoluteFillObject, top: -height * 0.61 }]}
           />
-          <Box flex={1} backgroundColor="white" borderRadius="xl" borderTopLeftRadius="none">
+          <Box
+            flex={1}
+            justifyContent="center"
+            backgroundColor="white"
+            borderRadius="xl"
+            padding="l"
+            borderTopLeftRadius="none"
+          >
             {children}
           </Box>
         </Box>
