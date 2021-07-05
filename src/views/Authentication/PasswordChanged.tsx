@@ -8,7 +8,7 @@ import { Feather as Icon } from '@expo/vector-icons';
 const PasswordChanged = ({ navigation }: StackNavigationProps<Routes, 'PasswordChanged'>) => {
   const SIZE = 60;
   return (
-    <Container footer={
+    <Container pattern={0} footer={
       <Box flexDirection="row" justifyContent="center">
         <CloseButton onPress={() => navigation.pop()} />
       </Box>

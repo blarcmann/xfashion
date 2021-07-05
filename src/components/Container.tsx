@@ -6,7 +6,11 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import Constants from "expo-constants";
 import theme, { Box } from '../components/Theme'
 
-export const assets = [require('./assets/images/patterns/taieri.png')];
+export const assets = [
+  require('./assets/images/patterns/0.png'),
+  require('./assets/images/patterns/1.png'),
+  require('./assets/images/patterns/2.png'),
+] as const;
 const aspectRatio = 920 / 1600;
 const { width, height: wHeight } = Dimensions.get('window');
 const height = width * aspectRatio;
@@ -14,11 +18,13 @@ const height = width * aspectRatio;
 interface ContainerProps {
   children: ReactNode;
   footer: ReactNode;
+  pattern: 0 | 1 | 2;
 }
 
 
-const Container = ({ children, footer }: ContainerProps) => {
+const Container = ({ children, footer, pattern }: ContainerProps) => {
   const insets = useSafeAreaInsets();
+  const asset = assets[pattern]
   return (
     <KeyboardAwareScrollView scrollEnabled={false}>
       <Box height={wHeight + (Platform.OS === 'android' ? Constants.statusBarHeight : 0)} backgroundColor="secondary">
@@ -29,11 +35,11 @@ const Container = ({ children, footer }: ContainerProps) => {
             overflow="hidden"
             height={height * 0.61}
           >
-            <Image source={assets[0]} style={Styles.pattern} />
+            <Image source={asset} style={Styles.pattern} />
           </Box>
         </Box>
         <Box flex={1} overflow="hidden">
-          <Image source={assets[0]}
+          <Image source={asset}
             style={[{ width, height, ...StyleSheet.absoluteFillObject, top: -height * 0.61 }]}
           />
           <Box flex={1} backgroundColor="white" borderRadius="xl" borderTopLeftRadius="none">

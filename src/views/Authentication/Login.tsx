@@ -40,7 +40,7 @@ const Login = ({ navigation }: StackNavigationProps<Routes, 'Login'>) => {
   const password = useRef<TextInput>(null);
 
   return (
-    <Container {...{ footer }}>
+    <Container pattern={2} {...{ footer }}>
       <Box padding="l">
         <Text
           variant="title"
