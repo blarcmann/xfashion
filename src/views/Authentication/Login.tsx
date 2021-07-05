@@ -1,11 +1,15 @@
 import React, { useRef } from 'react'
-import { TouchableWithoutFeedback, TextInput } from 'react-native';
+import { TextInput } from 'react-native';
 import * as Yup from 'yup';
 import { Button, Container, Text, TextField, Checkbox } from '../../components';
 import { useFormik } from 'formik';
 import Footer from './Footer';
 import { Box } from '../../components/Theme';
-import { Routes, StackNavigationProps } from '../../Navigation';
+import { AuthenticationRoutes, HomeRoutes } from '../../Navigation';
+import { BorderlessButton } from 'react-native-gesture-handler';
+import { CompositeNavigationProp } from '@react-navigation/native';
+import { DrawerNavigationProp } from '@react-navigation/drawer';
+import { StackNavigationProp } from '@react-navigation/stack';
 
 
 const LoginSchema = Yup.object().shape({
@@ -18,7 +22,14 @@ const LoginSchema = Yup.object().shape({
     .required('Required'),
 });
 
-const Login = ({ navigation }: StackNavigationProps<Routes, 'Login'>) => {
+interface LoginProps {
+  navigation: CompositeNavigationProp<
+    StackNavigationProp<AuthenticationRoutes, "Login">,
+    DrawerNavigationProp<HomeRoutes, "OutfitIdeas">
+  >
+}
+
+const Login = ({ navigation }: LoginProps) => {
   const { handleChange, handleBlur, handleSubmit, setFieldValue, errors, touched, values } = useFormik({
     initialValues: {
       email: '',
@@ -26,7 +37,7 @@ const Login = ({ navigation }: StackNavigationProps<Routes, 'Login'>) => {
       remember: false,
     },
     validationSchema: LoginSchema,
-    onSubmit: values => console.log(values),
+    onSubmit: () => navigation.navigate('OutfitIdeas'),
   })
 
   const footer = (
@@ -71,7 +82,7 @@ const Login = ({ navigation }: StackNavigationProps<Routes, 'Login'>) => {
               onSubmitEditing={() => password.current?.focus()}
             />
           </Box>
-          <Box marginBottom="m">
+          <Box>
             <TextField
               ref={password}
               icon="lock"
@@ -90,15 +101,16 @@ const Login = ({ navigation }: StackNavigationProps<Routes, 'Login'>) => {
           <Box
             flexDirection="row"
             justifyContent="space-between"
+            marginVertical="m"
             alignItems="center">
             <Checkbox
               label="Remember me"
               value={values.remember}
               onChange={(val: boolean) => setFieldValue('remember', val)}
             />
-            <TouchableWithoutFeedback onPress={() => navigation.navigate('ForgotPassword')}>
-              <Text color="green">Forgot password</Text>
-            </TouchableWithoutFeedback>
+            <BorderlessButton onPress={() => navigation.navigate('ForgotPassword')}>
+              <Text variant="button" color="green">Forgot password</Text>
+            </BorderlessButton>
           </Box>
           <Box alignItems="center" marginTop="m">
             <Button

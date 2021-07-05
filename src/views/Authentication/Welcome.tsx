@@ -1,9 +1,10 @@
 import React from 'react'
+import { BorderlessButton } from 'react-native-gesture-handler'
 import { Button } from '../../components'
 import { Box, Text } from '../../components/Theme'
-import { Routes, StackNavigationProps } from '../../Navigation'
+import { AuthenticationRoutes, StackNavigationProps } from '../../Navigation'
 
-const Welcome = ({ navigation }: StackNavigationProps<Routes, 'Onboarding'>) => {
+const Welcome = ({ navigation }: StackNavigationProps<AuthenticationRoutes, 'Onboarding'>) => {
   return (
     <Box flex={1} backgroundColor="white">
       <Box
@@ -44,11 +45,9 @@ const Welcome = ({ navigation }: StackNavigationProps<Routes, 'Onboarding'>) => 
             label="Join us, its free"
             onPress={() => navigation.navigate('Signup')}
           />
-          <Button
-            variant="transparent"
-            label="Forgot password?"
-            onPress={() => console.log('pressps')}
-          />
+          <BorderlessButton onPress={() => navigation.navigate('ForgotPassword')}>
+            <Text variant="button" color="secondary" >Forgot Password?</Text>  
+          </BorderlessButton>
         </Box>
       </Box>
     </Box>

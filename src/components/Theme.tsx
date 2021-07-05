@@ -40,7 +40,7 @@ const theme = createTheme({
   },
   textVariants: {
     hero: {
-      fontSize: 80, 
+      fontSize: 80,
       lineHeight: 80,
       fontFamily: 'SFProText-Bold',
       color: 'white',
@@ -62,6 +62,12 @@ const theme = createTheme({
       lineHeight: 24,
       fontFamily: 'SFProText-Regular',
       color: 'body',
+    },
+    button: {
+      fontFamily: 'SFProText-Semibold',
+      fontSize: 15,
+      color: 'secondary',
+      textAlign: 'center',
     }
   },
   breakpoints: {

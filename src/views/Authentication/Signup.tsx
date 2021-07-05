@@ -5,7 +5,7 @@ import { Button, Container, Text, TextField } from '../../components';
 import { useFormik } from 'formik';
 import Footer from './Footer';
 import { Box } from '../../components/Theme';
-import { StackNavigationProps, Routes } from '../../Navigation';
+import { StackNavigationProps, AuthenticationRoutes } from '../../Navigation';
 
 
 const SignupSchema = Yup.object().shape({
@@ -21,7 +21,7 @@ const SignupSchema = Yup.object().shape({
     .required('Required'),
 });
 
-const Signup = ({ navigation }: StackNavigationProps<Routes, 'Signup'>) => {
+const Signup = ({ navigation }: StackNavigationProps<AuthenticationRoutes, 'Signup'>) => {
   const { handleChange, handleBlur, handleSubmit, errors, touched } = useFormik({
     initialValues: {
       email: '',
@@ -31,7 +31,7 @@ const Signup = ({ navigation }: StackNavigationProps<Routes, 'Signup'>) => {
     validationSchema: SignupSchema,
     onSubmit: values => {
       console.log(values)
-      alert('ydhhd');
+      navigation.navigate('Login')
     }
   })
 

@@ -1,34 +1,33 @@
 import React from 'react'
-import { Button, Container, Text, CloseButton } from '../../components';
+import { Button, Container, Text, RoundedIconButton } from '../../components';
 import { Box } from '../../components/Theme';
-import { StackNavigationProps, Routes } from '../../Navigation';
-import { Feather as Icon } from '@expo/vector-icons';
+import { StackNavigationProps, AuthenticationRoutes } from '../../Navigation';
 
 
-const PasswordChanged = ({ navigation }: StackNavigationProps<Routes, 'PasswordChanged'>) => {
-  const SIZE = 60;
+const PasswordChanged = ({ navigation }: StackNavigationProps<AuthenticationRoutes, 'PasswordChanged'>) => {
+  const SIZE = 80;
   return (
     <Container pattern={0} footer={
       <Box flexDirection="row" justifyContent="center">
-        <CloseButton onPress={() => navigation.pop()} />
+        <RoundedIconButton
+          name="x"
+          color="secondary"
+          size={60}
+          backgroundColor="white"
+          onPress={() => navigation.pop()} />
       </Box>
     }>
       <Box padding="l" alignItems="center" justifyContent="center" flex={1}>
-        <Box
-          backgroundColor="lightgreen"
-          justifyContent="center"
-          alignItems="center"
-          marginBottom="l"
-          style={{ height: SIZE, width: SIZE, borderRadius: SIZE / 2 }}>
-          <Text color="green">
-            <Icon name="check" size={32} />
-          </Text>
-        </Box>
-        <Text variant="title" textAlign="center" marginBottom="m">
-          Password changed successfully
+        <RoundedIconButton
+          name="check"
+          color="green"
+          size={SIZE}
+          backgroundColor="lightgreen" />
+        <Text variant="title" textAlign="center" marginVertical="l">
+          Your password was changed successfully
         </Text>
         <Text variant="body" textAlign="center" marginBottom="l">
-          Enter the email associated with your account
+          Close this window and try log in again
         </Text>
 
         <Box alignItems="center" marginTop="m">
