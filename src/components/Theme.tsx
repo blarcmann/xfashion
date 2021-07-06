@@ -14,6 +14,7 @@ const palette = {
   yellow: '#FFC641',
   pink: '#FF87A2',
   violet: '#442CB9',
+  dirtywhite: '#FAFAFA',
 };
 
 
@@ -32,6 +33,7 @@ const theme = createTheme({
     yellow: palette.yellow,
     pink: palette.pink,
     violet: palette.violet,
+    dirtywhite: palette.dirtywhite,
   },
   spacing: {
     s: 8,
@@ -60,13 +62,13 @@ const theme = createTheme({
       color: 'secondary',
     },
     title2: {
-      fontSize: 24,
+      fontSize: 18,
       lineHeight: 30,
       fontFamily: 'SFProText-Semibold',
       color: 'secondary',
     },
     body: {
-      fontSize: 16,
+      fontSize: 15,
       lineHeight: 24,
       fontFamily: 'SFProText-Regular',
       color: 'body',
@@ -76,7 +78,14 @@ const theme = createTheme({
       fontSize: 15,
       color: 'secondary',
       textAlign: 'center',
-    }
+    },
+    header: {
+      fontSize: 12,
+      fontFamily: 'SFProText-Semibold',
+      lineHeight: 24,
+      textTransform: 'uppercase',
+      color: 'secondary',
+    },
   },
   breakpoints: {
     phone: 0,

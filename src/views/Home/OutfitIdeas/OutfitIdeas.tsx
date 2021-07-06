@@ -1,23 +1,23 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { Header } from '../../../components'
+import { Box } from '../../../components/Theme'
+import { HomeNavigationProps } from '../../../Navigation'
 
 // interface OutfitIdeasProps {
 
 // }
 
-const OutfitIdeas = () => {
+const OutfitIdeas = ({ navigation }: HomeNavigationProps<"OutfitIdeas">) => {
   return (
-    <View style={Styles.container}>
-      <Text>Declan Rice</Text>
-    </View>
+    <Box flex={1} backgroundColor="white">
+      <Header
+        title="Outfit Ideas"
+        left={{ icon: 'menu', onPress: () => navigation.openDrawer() }}
+        right={{ icon: 'shopping-bag', onPress: () => true }}
+      />
+    </Box>
   )
 }
 
 export default OutfitIdeas
 
-const Styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'yellow',
-  }
-})

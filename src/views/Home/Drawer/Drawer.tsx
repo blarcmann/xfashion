@@ -1,9 +1,11 @@
 import React from 'react'
 import { StyleSheet, Dimensions, Image } from 'react-native'
-import { Box, Text } from '../../../components/Theme';
+import theme, { Box, Text } from '../../../components/Theme';
 import DrawerItem, { DrawerItemProps } from './DrawerItem';
-import { RoundedIconButton } from '../../../components';
-// import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { assets } from '../../../components/Container';
+import { Header } from '../../../components'
+import { DrawerActions, useNavigation } from '@react-navigation/native';
+import { HomeNavigationProps } from '../../../Navigation';
 
 
 const aspectRatio = 920 / 1600;
@@ -20,40 +22,33 @@ const items: DrawerItemProps[] = [
   { icon: 'log-out', label: 'Logout', screen: 'Logout', color: 'secondary' },
 ]
 
-const Drawer = () => {
-  // const insets = useSafeAreaInsets();
+const Drawer = ({ navigation }: HomeNavigationProps<"OutfitIdeas">) => {
   return (
     <Box flex={1}>
       <Box
         flex={0.15} backgroundColor="white"
         flexDirection="row"
         justifyContent="space-between"
-        paddingHorizontal="m"
-        style={{ paddingTop: 40 }}
+        paddingHorizontal="s"
       >
         <Box
-          position="absolute" top={0} left={0} right={0} bottom={0}
+          position="absolute"
+          top={0}
+          left={0}
+          right={0}
+          bottom={0}
           borderBottomRightRadius="xl"
           backgroundColor="secondary"
-        />
-        <RoundedIconButton
-          name="x"
-          color="white"
-          backgroundColor="secondary"
-          size={24}
-          onPress={() => true}
-        />
-        <Text variant="body" color="white">MY PROFILE</Text>
-        <RoundedIconButton
-          name="shopping-bag"
-          color="white"
-          backgroundColor="secondary"
-          size={24}
-          onPress={() => true}
-        />
+        >
+          <Header
+            dark
+            title="menu"
+            left={{ icon: 'x', onPress: () => navigation.dispatch(DrawerActions.closeDrawer()) }}
+            right={{ icon: 'shopping-bag', onPress: () => true }}
+          />
+        </Box>
       </Box>
       <Box flex={0.8}>
-        <Box flex={1} backgroundColor="secondary" />
         <Box flex={1} backgroundColor="secondary" />
         <Box
           position="absolute" top={0} left={0} right={0} bottom={0}
@@ -83,7 +78,7 @@ const Drawer = () => {
       </Box>
       <Box flex={0.15} width={DRAWER_WIDTH} height={height * 0.61}>
         <Image
-          source={require('../../../components/assets/images/patterns/0.png')}
+          source={assets[0]}
           style={Styles.patternBottom}
         />
       </Box>
@@ -103,6 +98,7 @@ const Styles = StyleSheet.create({
     ...StyleSheet.absoluteFillObject,
     width: undefined,
     height: undefined,
+    borderTopLeftRadius: theme.borderRadii.xl,
   }
 
 })

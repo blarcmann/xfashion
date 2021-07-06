@@ -6,3 +6,4 @@ export { default as TextField } from './forms/TextField';
 export { default as Checkbox } from './forms/Checkbox';
 export { default as RoundedIconButton } from './RoundedIconButton';
 export { default as RoundedIcon } from './RoundedIcon';
+export { default as Header } from './Header';
