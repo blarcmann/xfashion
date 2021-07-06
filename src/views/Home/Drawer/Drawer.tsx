@@ -4,8 +4,7 @@ import theme, { Box, Text } from '../../../components/Theme';
 import DrawerItem, { DrawerItemProps } from './DrawerItem';
 import { assets } from '../../../components/Container';
 import { Header } from '../../../components'
-import { DrawerActions, useNavigation } from '@react-navigation/native';
-import { HomeNavigationProps } from '../../../Navigation';
+import { DrawerActions } from '@react-navigation/native';
 
 
 const aspectRatio = 920 / 1600;
@@ -22,7 +21,8 @@ const items: DrawerItemProps[] = [
   { icon: 'log-out', label: 'Logout', screen: 'Logout', color: 'secondary' },
 ]
 
-const Drawer = ({ navigation }: HomeNavigationProps<"OutfitIdeas">) => {
+const Drawer = (props: any) => {
+  const { navigation } = props;
   return (
     <Box flex={1}>
       <Box
