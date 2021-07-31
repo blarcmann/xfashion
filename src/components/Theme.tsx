@@ -2,6 +2,7 @@ import { createBox, createText, createTheme } from '@shopify/restyle'
 
 const palette = {
   darkblue: '#0C0D34',
+  lightblue: '#BFEAF5',
   white: 'white',
   body: 'rgba(12, 13, 52, 0.7)',
   bodylite: 'rgba(12, 13, 52, 0.5)',
@@ -21,6 +22,7 @@ const palette = {
 const theme = createTheme({
   colors: {
     secondary: palette.darkblue,
+    lightblue: palette.lightblue,
     white: palette.white,
     body: palette.body,
     green: palette.green,
