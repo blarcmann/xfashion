@@ -6,21 +6,22 @@ import { Box } from '../../../components/Theme'
 import { HomeNavigationProps } from '../../../Navigation'
 import Background from './Background';
 import Card from './Card';
+import Categories from './Categories';
 
 const cards = [
-  { 
+  {
     index: 3,
     source: require('../../Authentication/assets/1.jpg')
   },
-  { 
+  {
     index: 2,
     source: require('../../Authentication/assets/2.jpg')
   },
-  { 
+  {
     index: 1,
     source: require('../../Authentication/assets/3.jpg')
   },
-  { 
+  {
     index: 0,
     source: require('../../Authentication/assets/4.jpg')
   },
@@ -38,6 +39,7 @@ const OutfitIdeas = ({ navigation }: HomeNavigationProps<"OutfitIdeas">) => {
         left={{ icon: 'menu', onPress: () => navigation.openDrawer() }}
         right={{ icon: 'shopping-bag', onPress: () => true }}
       />
+      <Categories />
       <Box flex={1}>
         <Background />
         {cards.map(({ index, source }) =>
@@ -46,7 +48,7 @@ const OutfitIdeas = ({ navigation }: HomeNavigationProps<"OutfitIdeas">) => {
               key={index}
               position={sub(index * step, aIndex)}
               onSwipe={() => setCurrentIndex(prev => prev + step)}
-              {...{source, step} }
+              {...{ source, step }}
             />
           ))}
       </Box>

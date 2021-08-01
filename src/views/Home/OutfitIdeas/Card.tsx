@@ -42,6 +42,7 @@ const Card = ({ position, onSwipe, source }: CardProps) => {
     velocity: velocity.y,
     state,
     snapPoints: [0],
+    onSnap: () => console.log(), // investigate this
   }))
 
   return (
