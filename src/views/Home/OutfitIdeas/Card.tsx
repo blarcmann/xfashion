@@ -24,11 +24,6 @@ const Card = ({ position, onSwipe, source }: CardProps) => {
   const backgroundColor = '#C9E9E7';
   const translateYOffset = mix(position, 0, -40);
   const scale = mix(position, 1, 0.9);
-  // const imageScale: any = interpolateNode(position, {
-  //   inputRange: [0, position],
-  //   outputRange: [1, 0.8],
-  //   extrapolate: Extrapolate.CLAMP,
-  // });
   const translateX = useSpring({
     value: translation.x,
     velocity: velocity.x,
@@ -42,7 +37,6 @@ const Card = ({ position, onSwipe, source }: CardProps) => {
     velocity: velocity.y,
     state,
     snapPoints: [0],
-    onSnap: () => console.log(), // investigate this
   }))
 
   return (

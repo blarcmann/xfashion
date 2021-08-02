@@ -7,7 +7,7 @@ interface WithSpringParams {
   velocity: Animated.Node<number>;
   state: Animated.Node<State>;
   snapPoints: number[];
-  onSnap: (value: readonly number[]) => void;
+  onSnap?: (value: readonly number[]) => void;
 }
 
 export const useSpring = ({
