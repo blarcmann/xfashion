@@ -15,9 +15,10 @@ const Footer = ({ onPress, label }: FooterProps) => {
       backgroundColor="secondary"
       paddingTop="m"
       borderTopLeftRadius="xl"
+      borderTopRightRadius="xl"
     >
       <Box style={{
-        paddingBottom: insets.top,
+        paddingBottom: insets.bottom,
         alignItems: 'center',
       }}>
         <Button variant="primary" {...{ onPress, label }} />
